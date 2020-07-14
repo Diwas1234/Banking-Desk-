@@ -1,0 +1,214 @@
+   var front =1 , person = Number_of_persons , Wait[1000000] , Queue =0 , person_in_queue , queuepersons =0;
+   
+    var typeOfCustomer = prompt("Please enter Type of Customers", "Eg . Red/Blue/Green");
+    var Number_of_persons = prompt("Please enter the number of persons", "");
+    var val = time_On_Desk(typeOfCustomer); //  time needed for work to be done
+    var timerDesk , timerEntry=0;
+    timerDesk = val;
+    W[0] =0;
+   
+    while(person)
+    {
+       
+               setTimeout(DecDeskTimer(timerDesk),100);
+               setTimeout(DecEntryTimer(timerEntry),100);
+               
+                if(person==Number_of_persons)
+                {
+                    person--;
+                    destart(timerDesk);
+                    restart(timerEntry);
+                }
+               
+               
+                 else if(function_probability(timerEntry)==1)
+                    {   person_in_queue[queuepersons++] = Queue;
+                        Restart(timerEntry);
+                        if(timerDesk==0)
+                        {
+                            person--;
+                            destart(timerDesk);
+                        }
+                        else
+                        {
+                           W[front++] = val*Queue + timerDesk;
+                           Queue++;
+ 
+                        }
+                    }    
+
+               
+               
+                else if(Queue > 0)
+                {
+
+                       
+                        if(timerDesk==0)
+                        {
+                            person--;
+                            Queue--;
+                            timerDesk = val;
+                            destart(timerDesk);
+                        }
+
+
+                }
+       
+    }
+       
+       
+var time_On_Desk = function(typeOfCustomer){
+     var x = Math.random();
+ 
+    if(typeOfCustomer == "RED")
+        {
+            var alpha = 100 , beta = 200;
+           return calcuateExpr(aplha, beta , x)
+           
+        }
+       
+    else if(typeOfCustomer == "Yellow")
+        {
+            var alpha = 100 , beta = 200;
+            return calcuateExpr(aplha, beta , x)
+           
+        }
+       
+    else if(typeOfCustomer == "Green")
+        {
+            var alpha = 100 , beta = 200;
+            return calcuateExpr(aplha, beta , x)
+           
+        }
+    else
+    {
+        return "Wrong input! Please try again."
+    }
+       
+}    
+
+
+
+
+var calcuateExpr = function(alpha , beta , x){
+   var  y =1 , z =1  ;
+    while(alpha!=0)
+    {
+        y = y*x
+        alpha--;
+    }
+   while(beta!=0)
+    {
+        z = y*(1-x)
+        alpha--;
+    }
+   
+    return y + z;
+ 
+}
+
+
+var function_probability = function(timerEntry){
+   
+    var x = 100 , z =1 ;
+    var InterMediate_expression = function_probability/x;
+    while(InterMediate_expression!=0)
+    {
+        var z = 1/2.718*z;
+    }
+   
+    return (1 - z);
+   
+}
+
+
+var DecDeskTimer = function(timerDesk){
+     timerDesk = timerDesk-10;
+    return timerDesk;
+}
+
+var DecEntryTimer = function(timerEntry){
+     timerEntry = timerEntry+10;
+    return timerEntry;
+}
+var destart = function(timerDesk){
+    timerDesk = val;
+    return timerDesk;
+}
+
+var Restart = function(timerEntry){
+    timerEntry = 0;
+    return timerEntry;
+}
+
+
+
+
+
+
+// At The End we have An Waiting Array of the total Number of persons of type yellow/red/Green
+
+//Solution 1 :- // To Count the minimum and maximum of tha waiting times.
+    var max = W[0];
+    for(i=1;i<front;i++)
+    {
+        if(max < W[i])
+        {
+            max = W[i];
+        }
+    }
+   
+  var min = W[0];
+    for(i=1;i<front;i++)
+    {
+        if(min > W[i])
+        {
+            min = W[i];
+        }
+    }
+
+// Solution 2 :- To find the Average and Maximum queue lenghts in front of the teller
+    var max = W[0];
+    for(i=1;i<queuepersons;i++)
+    {
+        if(max < W[i])
+        {
+            max = W[i];
+        }
+    }
+   
+   
+  var sum =0;
+    for(i=0;i<queuepersons;i++)
+     sum = sum + person_in_queue[i];
+   
+    var avg = sum / Number_of_persons;
+   
+// solution 3 :- To find the  type of customer whom avg and max waiting time is closest;
+    // calculate the avg and max for all 3 type of Customers and store in variables
+   
+     if (diff(Redmax , Redavg) < diff(Greenmax , Greenavg) )
+     {
+         if(diff(Redmax , Redavg) < diff(Yellowmax , Yellowmaxavg) )n
+             return "RED";
+         
+         else
+            return "Yellow"
+     }
+     
+     else
+     {
+      if(diff(Greenmax , Greenavg) < diff(Yellowmax , Yellowmaxavg) )n
+             return "Green";
+         
+         else
+            return "Yellow"
+     }
+     
+     
+     
+    var diff = function(x ,y){
+        return x-y;
+    }
+   
+//End of solution  
